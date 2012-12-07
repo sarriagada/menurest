@@ -1,7 +1,12 @@
 menurest
 ========
 
-App en .Net para crear un directorio de restaurantes y los platos disponibles en cada uno
+App en .Net para crear un directorio de restaurantes y los platos disponibles en cada uno.
+
+
+======= Version NuevoEstilo =======
+Se modificaron fuentes y background
+===================================
 
 1) Login
 	-User y pass
