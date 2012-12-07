@@ -32,25 +32,25 @@ Partial Class frm_registro
         'txt_pass
         '
         Me.txt_pass.Location = New System.Drawing.Point(82, 113)
-        Me.txt_pass.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txt_pass.Margin = New System.Windows.Forms.Padding(2)
         Me.txt_pass.Name = "txt_pass"
-        Me.txt_pass.Size = New System.Drawing.Size(151, 20)
+        Me.txt_pass.Size = New System.Drawing.Size(162, 20)
         Me.txt_pass.TabIndex = 2
         '
         'txt_pass_confirm
         '
         Me.txt_pass_confirm.Location = New System.Drawing.Point(82, 149)
-        Me.txt_pass_confirm.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txt_pass_confirm.Margin = New System.Windows.Forms.Padding(2)
         Me.txt_pass_confirm.Name = "txt_pass_confirm"
-        Me.txt_pass_confirm.Size = New System.Drawing.Size(151, 20)
+        Me.txt_pass_confirm.Size = New System.Drawing.Size(162, 20)
         Me.txt_pass_confirm.TabIndex = 3
         '
         'txt_nombre
         '
         Me.txt_nombre.Location = New System.Drawing.Point(82, 79)
-        Me.txt_nombre.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txt_nombre.Margin = New System.Windows.Forms.Padding(2)
         Me.txt_nombre.Name = "txt_nombre"
-        Me.txt_nombre.Size = New System.Drawing.Size(151, 20)
+        Me.txt_nombre.Size = New System.Drawing.Size(162, 20)
         Me.txt_nombre.TabIndex = 4
         '
         'pic_guardar
@@ -85,7 +85,7 @@ Partial Class frm_registro
         Me.Controls.Add(Me.txt_pass_confirm)
         Me.Controls.Add(Me.txt_pass)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frm_registro"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "menurest"
