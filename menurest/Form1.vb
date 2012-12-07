@@ -11,4 +11,10 @@ Public Class frm_login
         pic_entrar.Visible = True
     End Sub
     '************************************************
+
+    Private Sub pic_registrarse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_registrarse.Click
+        'Al hacer click se abre el form Registro.
+        frm_registro.Show()
+        Me.Hide()
+    End Sub
 End Class
