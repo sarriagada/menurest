@@ -30,69 +30,75 @@ Partial Class frm_app
         'lbl_rest
         '
         Me.lbl_rest.AutoSize = True
-        Me.lbl_rest.Location = New System.Drawing.Point(27, 19)
+        Me.lbl_rest.Location = New System.Drawing.Point(20, 15)
+        Me.lbl_rest.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbl_rest.Name = "lbl_rest"
-        Me.lbl_rest.Size = New System.Drawing.Size(97, 17)
+        Me.lbl_rest.Size = New System.Drawing.Size(73, 13)
         Me.lbl_rest.TabIndex = 0
         Me.lbl_rest.Text = "Restaurantes:"
         '
         'lbl_platos
         '
         Me.lbl_platos.AutoSize = True
-        Me.lbl_platos.Location = New System.Drawing.Point(156, 19)
+        Me.lbl_platos.Location = New System.Drawing.Point(117, 15)
+        Me.lbl_platos.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbl_platos.Name = "lbl_platos"
-        Me.lbl_platos.Size = New System.Drawing.Size(51, 17)
+        Me.lbl_platos.Size = New System.Drawing.Size(39, 13)
         Me.lbl_platos.TabIndex = 1
         Me.lbl_platos.Text = "Platos:"
         '
         'lst_rest
         '
         Me.lst_rest.FormattingEnabled = True
-        Me.lst_rest.ItemHeight = 16
-        Me.lst_rest.Location = New System.Drawing.Point(12, 57)
+        Me.lst_rest.Location = New System.Drawing.Point(9, 46)
+        Me.lst_rest.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.lst_rest.Name = "lst_rest"
-        Me.lst_rest.Size = New System.Drawing.Size(120, 84)
+        Me.lst_rest.Size = New System.Drawing.Size(91, 69)
         Me.lst_rest.TabIndex = 2
         '
         'lst_platos
         '
         Me.lst_platos.FormattingEnabled = True
-        Me.lst_platos.ItemHeight = 16
-        Me.lst_platos.Location = New System.Drawing.Point(138, 57)
+        Me.lst_platos.Location = New System.Drawing.Point(104, 46)
+        Me.lst_platos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.lst_platos.Name = "lst_platos"
-        Me.lst_platos.Size = New System.Drawing.Size(120, 84)
+        Me.lst_platos.Size = New System.Drawing.Size(91, 69)
         Me.lst_platos.TabIndex = 3
         '
         'lbl_agregar
         '
         Me.lbl_agregar.AutoSize = True
-        Me.lbl_agregar.Location = New System.Drawing.Point(12, 197)
+        Me.lbl_agregar.Location = New System.Drawing.Point(9, 160)
+        Me.lbl_agregar.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbl_agregar.Name = "lbl_agregar"
-        Me.lbl_agregar.Size = New System.Drawing.Size(71, 17)
+        Me.lbl_agregar.Size = New System.Drawing.Size(53, 13)
         Me.lbl_agregar.TabIndex = 4
         Me.lbl_agregar.Text = "Agregar +"
         '
         'lbl_ver
         '
         Me.lbl_ver.AutoSize = True
-        Me.lbl_ver.Location = New System.Drawing.Point(135, 197)
+        Me.lbl_ver.Location = New System.Drawing.Point(101, 160)
+        Me.lbl_ver.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbl_ver.Name = "lbl_ver"
-        Me.lbl_ver.Size = New System.Drawing.Size(30, 17)
+        Me.lbl_ver.Size = New System.Drawing.Size(23, 13)
         Me.lbl_ver.TabIndex = 5
         Me.lbl_ver.Text = "Ver"
         '
         'frm_app
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(282, 255)
+        Me.ClientSize = New System.Drawing.Size(212, 207)
         Me.Controls.Add(Me.lbl_ver)
         Me.Controls.Add(Me.lbl_agregar)
         Me.Controls.Add(Me.lst_platos)
         Me.Controls.Add(Me.lst_rest)
         Me.Controls.Add(Me.lbl_platos)
         Me.Controls.Add(Me.lbl_rest)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "frm_app"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "menurest"
         Me.ResumeLayout(False)
         Me.PerformLayout()

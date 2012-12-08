@@ -42,6 +42,7 @@ Partial Class frm_registro
         Me.txt_pass_confirm.Location = New System.Drawing.Point(82, 149)
         Me.txt_pass_confirm.Margin = New System.Windows.Forms.Padding(2)
         Me.txt_pass_confirm.Name = "txt_pass_confirm"
+        Me.txt_pass_confirm.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txt_pass_confirm.Size = New System.Drawing.Size(162, 20)
         Me.txt_pass_confirm.TabIndex = 3
         '
