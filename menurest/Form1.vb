@@ -1,4 +1,5 @@
 Public Class frm_login
+
     '************************************************
     'Efecto al pasar el mouse por el botón ENTRAR.
     'Se oculta una imagen y se muestra otra para simularlo.
