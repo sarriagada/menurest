@@ -24,6 +24,7 @@ Public Class frm_login
         Dim comm As New OleDbCommand     'objeto de Comandos.
         Dim dr As OleDbDataReader        'DataReader.
 
+
         Try
             'Cadena de conexión.
             conex.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source= " + My.Application.Info.DirectoryPath + "\db_menurest1.mdb"
@@ -50,6 +51,7 @@ Public Class frm_login
                 Me.Hide()
             Else
                 MsgBox("Usuario o contraseña inválidos.")
+                Funciones.limpiar_login()
             End If
 
             conex.Close()

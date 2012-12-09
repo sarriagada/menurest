@@ -185,7 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="db_menurest1.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />

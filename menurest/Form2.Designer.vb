@@ -34,8 +34,9 @@ Partial Class frm_registro
         Me.txt_pass.Location = New System.Drawing.Point(82, 113)
         Me.txt_pass.Margin = New System.Windows.Forms.Padding(2)
         Me.txt_pass.Name = "txt_pass"
+        Me.txt_pass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txt_pass.Size = New System.Drawing.Size(162, 20)
-        Me.txt_pass.TabIndex = 2
+        Me.txt_pass.TabIndex = 1
         '
         'txt_pass_confirm
         '
@@ -44,7 +45,7 @@ Partial Class frm_registro
         Me.txt_pass_confirm.Name = "txt_pass_confirm"
         Me.txt_pass_confirm.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txt_pass_confirm.Size = New System.Drawing.Size(162, 20)
-        Me.txt_pass_confirm.TabIndex = 3
+        Me.txt_pass_confirm.TabIndex = 2
         '
         'txt_nombre
         '
@@ -52,7 +53,7 @@ Partial Class frm_registro
         Me.txt_nombre.Margin = New System.Windows.Forms.Padding(2)
         Me.txt_nombre.Name = "txt_nombre"
         Me.txt_nombre.Size = New System.Drawing.Size(162, 20)
-        Me.txt_nombre.TabIndex = 4
+        Me.txt_nombre.TabIndex = 0
         '
         'pic_guardar
         '
