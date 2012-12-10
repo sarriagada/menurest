@@ -40,7 +40,7 @@ Partial Class frm_app
         'lbl_platos
         '
         Me.lbl_platos.AutoSize = True
-        Me.lbl_platos.Location = New System.Drawing.Point(117, 15)
+        Me.lbl_platos.Location = New System.Drawing.Point(140, 15)
         Me.lbl_platos.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbl_platos.Name = "lbl_platos"
         Me.lbl_platos.Size = New System.Drawing.Size(39, 13)
@@ -51,7 +51,7 @@ Partial Class frm_app
         '
         Me.lst_rest.FormattingEnabled = True
         Me.lst_rest.Location = New System.Drawing.Point(9, 46)
-        Me.lst_rest.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.lst_rest.Margin = New System.Windows.Forms.Padding(2)
         Me.lst_rest.Name = "lst_rest"
         Me.lst_rest.Size = New System.Drawing.Size(91, 69)
         Me.lst_rest.TabIndex = 2
@@ -59,8 +59,8 @@ Partial Class frm_app
         'lst_platos
         '
         Me.lst_platos.FormattingEnabled = True
-        Me.lst_platos.Location = New System.Drawing.Point(104, 46)
-        Me.lst_platos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.lst_platos.Location = New System.Drawing.Point(143, 46)
+        Me.lst_platos.Margin = New System.Windows.Forms.Padding(2)
         Me.lst_platos.Name = "lst_platos"
         Me.lst_platos.Size = New System.Drawing.Size(91, 69)
         Me.lst_platos.TabIndex = 3
@@ -89,14 +89,14 @@ Partial Class frm_app
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(212, 207)
+        Me.ClientSize = New System.Drawing.Size(316, 207)
         Me.Controls.Add(Me.lbl_ver)
         Me.Controls.Add(Me.lbl_agregar)
         Me.Controls.Add(Me.lst_platos)
         Me.Controls.Add(Me.lst_rest)
         Me.Controls.Add(Me.lbl_platos)
         Me.Controls.Add(Me.lbl_rest)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frm_app"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "menurest"
