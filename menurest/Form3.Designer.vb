@@ -19,95 +19,90 @@ Partial Class frm_app
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lbl_rest = New System.Windows.Forms.Label
-        Me.lbl_platos = New System.Windows.Forms.Label
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_app))
         Me.lst_rest = New System.Windows.Forms.ListBox
         Me.lst_platos = New System.Windows.Forms.ListBox
-        Me.lbl_agregar = New System.Windows.Forms.Label
-        Me.lbl_ver = New System.Windows.Forms.Label
+        Me.pic_ver = New System.Windows.Forms.PictureBox
+        Me.pic_agregar = New System.Windows.Forms.PictureBox
+        Me.lbl_usuario = New System.Windows.Forms.Label
+        CType(Me.pic_ver, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic_agregar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'lbl_rest
-        '
-        Me.lbl_rest.AutoSize = True
-        Me.lbl_rest.Location = New System.Drawing.Point(20, 15)
-        Me.lbl_rest.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lbl_rest.Name = "lbl_rest"
-        Me.lbl_rest.Size = New System.Drawing.Size(73, 13)
-        Me.lbl_rest.TabIndex = 0
-        Me.lbl_rest.Text = "Restaurantes:"
-        '
-        'lbl_platos
-        '
-        Me.lbl_platos.AutoSize = True
-        Me.lbl_platos.Location = New System.Drawing.Point(140, 15)
-        Me.lbl_platos.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lbl_platos.Name = "lbl_platos"
-        Me.lbl_platos.Size = New System.Drawing.Size(39, 13)
-        Me.lbl_platos.TabIndex = 1
-        Me.lbl_platos.Text = "Platos:"
         '
         'lst_rest
         '
         Me.lst_rest.FormattingEnabled = True
-        Me.lst_rest.Location = New System.Drawing.Point(9, 46)
+        Me.lst_rest.Location = New System.Drawing.Point(182, 100)
         Me.lst_rest.Margin = New System.Windows.Forms.Padding(2)
         Me.lst_rest.Name = "lst_rest"
-        Me.lst_rest.Size = New System.Drawing.Size(91, 69)
+        Me.lst_rest.Size = New System.Drawing.Size(91, 134)
         Me.lst_rest.TabIndex = 2
         '
         'lst_platos
         '
         Me.lst_platos.FormattingEnabled = True
-        Me.lst_platos.Location = New System.Drawing.Point(143, 46)
+        Me.lst_platos.Location = New System.Drawing.Point(317, 100)
         Me.lst_platos.Margin = New System.Windows.Forms.Padding(2)
         Me.lst_platos.Name = "lst_platos"
-        Me.lst_platos.Size = New System.Drawing.Size(91, 69)
+        Me.lst_platos.Size = New System.Drawing.Size(91, 134)
         Me.lst_platos.TabIndex = 3
         '
-        'lbl_agregar
+        'pic_ver
         '
-        Me.lbl_agregar.AutoSize = True
-        Me.lbl_agregar.Location = New System.Drawing.Point(9, 160)
-        Me.lbl_agregar.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lbl_agregar.Name = "lbl_agregar"
-        Me.lbl_agregar.Size = New System.Drawing.Size(53, 13)
-        Me.lbl_agregar.TabIndex = 4
-        Me.lbl_agregar.Text = "Agregar +"
+        Me.pic_ver.Image = CType(resources.GetObject("pic_ver.Image"), System.Drawing.Image)
+        Me.pic_ver.Location = New System.Drawing.Point(49, 120)
+        Me.pic_ver.Name = "pic_ver"
+        Me.pic_ver.Size = New System.Drawing.Size(79, 42)
+        Me.pic_ver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_ver.TabIndex = 6
+        Me.pic_ver.TabStop = False
         '
-        'lbl_ver
+        'pic_agregar
         '
-        Me.lbl_ver.AutoSize = True
-        Me.lbl_ver.Location = New System.Drawing.Point(101, 160)
-        Me.lbl_ver.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lbl_ver.Name = "lbl_ver"
-        Me.lbl_ver.Size = New System.Drawing.Size(23, 13)
-        Me.lbl_ver.TabIndex = 5
-        Me.lbl_ver.Text = "Ver"
+        Me.pic_agregar.Image = CType(resources.GetObject("pic_agregar.Image"), System.Drawing.Image)
+        Me.pic_agregar.Location = New System.Drawing.Point(33, 174)
+        Me.pic_agregar.Name = "pic_agregar"
+        Me.pic_agregar.Size = New System.Drawing.Size(113, 41)
+        Me.pic_agregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_agregar.TabIndex = 7
+        Me.pic_agregar.TabStop = False
+        '
+        'lbl_usuario
+        '
+        Me.lbl_usuario.AutoSize = True
+        Me.lbl_usuario.BackColor = System.Drawing.Color.Transparent
+        Me.lbl_usuario.Font = New System.Drawing.Font("Mouse Deco", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_usuario.ForeColor = System.Drawing.Color.White
+        Me.lbl_usuario.Location = New System.Drawing.Point(314, 49)
+        Me.lbl_usuario.Name = "lbl_usuario"
+        Me.lbl_usuario.Size = New System.Drawing.Size(0, 21)
+        Me.lbl_usuario.TabIndex = 8
         '
         'frm_app
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(316, 207)
-        Me.Controls.Add(Me.lbl_ver)
-        Me.Controls.Add(Me.lbl_agregar)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.ClientSize = New System.Drawing.Size(460, 282)
+        Me.Controls.Add(Me.lbl_usuario)
+        Me.Controls.Add(Me.pic_agregar)
+        Me.Controls.Add(Me.pic_ver)
         Me.Controls.Add(Me.lst_platos)
         Me.Controls.Add(Me.lst_rest)
-        Me.Controls.Add(Me.lbl_platos)
-        Me.Controls.Add(Me.lbl_rest)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frm_app"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "menurest"
+        CType(Me.pic_ver, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic_agregar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents lbl_rest As System.Windows.Forms.Label
-    Friend WithEvents lbl_platos As System.Windows.Forms.Label
     Friend WithEvents lst_rest As System.Windows.Forms.ListBox
     Friend WithEvents lst_platos As System.Windows.Forms.ListBox
-    Friend WithEvents lbl_agregar As System.Windows.Forms.Label
-    Friend WithEvents lbl_ver As System.Windows.Forms.Label
+    Friend WithEvents pic_ver As System.Windows.Forms.PictureBox
+    Friend WithEvents pic_agregar As System.Windows.Forms.PictureBox
+    Friend WithEvents lbl_usuario As System.Windows.Forms.Label
 End Class

@@ -15,7 +15,6 @@ Public Class frm_login
     '                LOGIN
     '************************************************
     Private Sub pic_entrar_on_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_entrar_on.Click
-        Funciones.CONECTAR() 'Se conecta con la db.
         Funciones.LOGIN()    'Se loguea.
     End Sub
     '************************************************

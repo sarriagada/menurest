@@ -4,7 +4,6 @@ Public Class frm_registro
     '                     REGISTRARSE
     '*************************************************************
     Private Sub pic_guardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_guardar.Click
-        Funciones.CONECTAR()
         Funciones.REGISTRARSE()
     End Sub
     '*************************************************************

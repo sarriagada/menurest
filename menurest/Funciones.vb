@@ -6,7 +6,9 @@ Module Funciones
     'USUARIO
     Public user As String   'Nombre de usuario actual (logueado).
     Public id_user As Integer 'Id de usuario actual (logueado).
+    Public id_rest As Integer 'Id del restaurant seleccionado actualmente.
     'CONEXIONES A LA DB
+    Dim sSQL As String 'String que guarda el query de la consulta.
     Dim conex As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source= " + My.Application.Info.DirectoryPath + "\db_menurest1.mdb") 'objeto de Conexión.
     Dim comm As New OleDbCommand    'objeto de Comandos.
     Dim dr As OleDbDataReader       'DataReader.
@@ -44,22 +46,28 @@ Module Funciones
     '              CONEXIONES A LA BASE DE DATOS
     '*************************************************************
     'Conectarse con la base de datos.
-    Sub CONECTAR()
+    Sub CONECTAR(ByVal sSQL As String)
         Try
+            'Query de consulta.
+            comm.CommandText = sSQL
+            'Asignamos la conexión al commando.
+            comm.Connection = conex
             'Abrir conexión.
             conex.Open()
 
-            'Asignamos la conexión al commando.
-            comm.Connection = conex
-
         Catch ex As Exception
-            MsgBox("Error al conectarse con la DB: " + vbCrLf + vbCrLf + ex.Message)
+            MsgBox("Error al conectarse con la DB: " & vbCrLf & vbCrLf & ex.Message)
         End Try
     End Sub
+    '-------------------------------------------------------------
     'Loguearse con un user y pass registrado.
     Sub LOGIN()
-        'Query de consulta.
-        comm.CommandText = "Select * from usuarios where nombre = '" & frm_login.txt_nombre.Text & "' and pass = '" & frm_login.txt_pass.Text & "'"
+
+        sSQL = "Select * from usuarios where nombre = '" & frm_login.txt_nombre.Text & "' and pass = '" & frm_login.txt_pass.Text & "'"
+
+        'Abre la conexión con la db.
+        CONECTAR(sSQL)
+
         'Consulta.
         dr = comm.ExecuteReader()
 
@@ -89,14 +97,18 @@ Module Funciones
         conex.Close()
 
     End Sub
+    '-------------------------------------------------------------
     'Registrar un nuevo user y password.
     Sub REGISTRARSE()
         Try
             'Valida los datos ingresados en el form de registro.
             Funciones.validar_registro()
             If (Funciones.valida_r = True) Then
+
                 'Query de consulta.
-                comm.CommandText = "Select * from usuarios where nombre = '" & frm_registro.txt_nombre.Text & "'"
+                sSQL = "Select * from usuarios where nombre = '" & frm_registro.txt_nombre.Text & "'"
+                'Abre la conexión con la db.
+                CONECTAR(sSQL)
                 'Consulta.
                 dt.TableName = "usuarios"
                 dt.Load(comm.ExecuteReader())
@@ -106,8 +118,11 @@ Module Funciones
                     MsgBox("El nombre de usuario ingresado no está disponible. Por favor elija otro.")
                     limpiar_registro()
                 Else
-                    comm.Connection = conex
-                    comm.CommandText = "insert into usuarios(nombre,pass) values('" & frm_registro.txt_nombre.Text & "','" & frm_registro.txt_pass.Text & "')"
+                    conex.Close()
+                    'Query.
+                    sSQL = "insert into usuarios(nombre,pass) values('" & frm_registro.txt_nombre.Text & "','" & frm_registro.txt_pass.Text & "')"
+                    'Abre la conexión.
+                    CONECTAR(sSQL)
 
                     comm.ExecuteNonQuery()
 
@@ -124,7 +139,64 @@ Module Funciones
         'Cierro la conexión.
         dt.Reset()
         conex.Close()
+    End Sub
+    '-------------------------------------------------------------
+    'Mostrar listas de restaurantes y de platos.
+    Sub MOSTRAR(ByVal sSQL As String, ByVal lista As ListBox)
+        Try
+            conex.Close()
+            'Abrimos conexión con la db.
+            CONECTAR(sSQL)
+            'Consulta.
+            dr = comm.ExecuteReader
 
+            lista.Items.Clear() 'Se limpia el contenido de la lista rest.
+
+            While dr.Read
+                'Se agregan los rest vinculados al usuario actual a la lista.
+                lista.Items.Add(dr.Item(2))
+            End While
+        Catch ex As Exception
+            MsgBox("Error en la conexión a la DB" & vbCrLf & vbCrLf & ex.Message)
+        End Try
+
+        dr.Close()
+        conex.Close()
+
+    End Sub
+
+    '-------------------------------------------------------------
+    'Muestra la lista de restaurantes asociados a la id del usuario activo.
+    Sub MOSTRAR_REST()
+        'Query de consulta.
+        sSQL = "Select * from rest where id_usuario = " & id_user
+
+        MOSTRAR(sSQL, frm_app.lst_rest) 'Mostrar lista de rest.
+
+    End Sub
+    '-------------------------------------------------------------
+    'Muestra la lista de platos en los restaurantes asociados a la id del usuario activo.
+    Sub MOSTRAR_PLATOS()
+        Dim index As Integer = frm_app.lst_rest.SelectedIndex 'Guardo el índice del elemento seleccionado.
+
+        'Query de consulta (Buscar id de restaurante).
+        sSQL = "Select * from rest where nombre = '" & frm_app.lst_rest.SelectedItem & "'"
+
+        'Abrimos conexión con la db.
+        conex.Close()
+        CONECTAR(sSQL)
+        'Consulta.
+        dr = comm.ExecuteReader
+
+        'Guardo la id del restaurant actual
+        If (dr.Read) Then
+            id_rest = dr(0)
+        End If
+
+        'Query de consulta (Mostrar platos asociados al restaurante actual).
+        sSQL = "Select * from platos where id_rest = " & id_rest
+
+        MOSTRAR(sSQL, frm_app.lst_platos) 'Mostrar lista de platos.
 
     End Sub
 
