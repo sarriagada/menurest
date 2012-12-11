@@ -7,6 +7,8 @@ Module Funciones
     Public user As String   'Nombre de usuario actual (logueado).
     Public id_user As Integer 'Id de usuario actual (logueado).
     Public id_rest As Integer 'Id del restaurant seleccionado actualmente.
+    Public rest As String     'Nombre del restaurant seleccionado actualmente.
+    Public plato As String    'Nombre del plato seleccionado actualmente.
     'CONEXIONES A LA DB
     Dim sSQL As String 'String que guarda el query de la consulta.
     Dim conex As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source= " + My.Application.Info.DirectoryPath + "\db_menurest1.mdb") 'objeto de Conexión.
@@ -48,6 +50,7 @@ Module Funciones
     'Conectarse con la base de datos.
     Sub CONECTAR(ByVal sSQL As String)
         Try
+            conex.Close()
             'Query de consulta.
             comm.CommandText = sSQL
             'Asignamos la conexión al commando.
@@ -118,7 +121,6 @@ Module Funciones
                     MsgBox("El nombre de usuario ingresado no está disponible. Por favor elija otro.")
                     limpiar_registro()
                 Else
-                    conex.Close()
                     'Query.
                     sSQL = "insert into usuarios(nombre,pass) values('" & frm_registro.txt_nombre.Text & "','" & frm_registro.txt_pass.Text & "')"
                     'Abre la conexión.
@@ -144,7 +146,6 @@ Module Funciones
     'Mostrar listas de restaurantes y de platos.
     Sub MOSTRAR(ByVal sSQL As String, ByVal lista As ListBox)
         Try
-            conex.Close()
             'Abrimos conexión con la db.
             CONECTAR(sSQL)
             'Consulta.
@@ -178,12 +179,12 @@ Module Funciones
     'Muestra la lista de platos en los restaurantes asociados a la id del usuario activo.
     Sub MOSTRAR_PLATOS()
         Dim index As Integer = frm_app.lst_rest.SelectedIndex 'Guardo el índice del elemento seleccionado.
+        rest = frm_app.lst_rest.SelectedItem
 
         'Query de consulta (Buscar id de restaurante).
         sSQL = "Select * from rest where nombre = '" & frm_app.lst_rest.SelectedItem & "'"
 
         'Abrimos conexión con la db.
-        conex.Close()
         CONECTAR(sSQL)
         'Consulta.
         dr = comm.ExecuteReader
@@ -199,15 +200,34 @@ Module Funciones
         MOSTRAR(sSQL, frm_app.lst_platos) 'Mostrar lista de platos.
 
     End Sub
+    '-------------------------------------------------------------
+    'Muestra los detalles del plato seleccionado.
+    Sub ver_plato()
+
+        sSQL = "Select * from platos where nombre = '" & plato & "' and id_rest = " & id_rest
+
+        'Abrimos la conexión con la db.
+        CONECTAR(sSQL)
+        'Consulta.
+        dr = comm.ExecuteReader
+
+        If (dr.Read) Then
+            frm_show.lbl_nombre_plato.Text = dr(2)
+            frm_show.lbl_descripcion_plato.Text = dr(3)
+            frm_show.lbl_precio.Text = dr(4)
+            frm_show.lbl_nombre_rest.Text = rest
+        End If
+    End Sub
 
     '*************************************************************
     '                         LIMPIAR
     '*************************************************************
     'Limpiar todos los campos del login.
     Sub limpiar_login()
+        frm_login.txt_nombre.Focus()
         frm_login.txt_nombre.Text = ""
         frm_login.txt_pass.Text = ""
-        frm_login.txt_nombre.Focus()
+
     End Sub
     'Limpiar todos los campos del registro.
     Sub limpiar_registro()
@@ -215,6 +235,13 @@ Module Funciones
         frm_registro.txt_pass.Text = ""
         frm_registro.txt_pass_confirm.Text = ""
         frm_registro.txt_nombre.Focus()
+    End Sub
+    'Limpiar todos los campos del show.
+    Sub limpiar_show()
+        frm_show.lbl_nombre_plato.Text = ""
+        frm_show.lbl_descripcion_plato.Text = ""
+        frm_show.lbl_precio.Text = ""
+        frm_show.lbl_nombre_rest.Text = ""
     End Sub
 
 End Module

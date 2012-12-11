@@ -14,6 +14,12 @@ Public Class frm_app
         MOSTRAR_PLATOS() 'Muestra los platos del restaurante seleccionado del usuario actual.
     End Sub
     '*************************************************************
+    '                  SELECCIONAR PLATO
+    '*************************************************************
+    Private Sub lst_platos_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lst_platos.SelectedIndexChanged
+        Funciones.plato = lst_platos.SelectedItem
+    End Sub
+    '*************************************************************
     '                  AGREGAR/EDITAR RESTAURANTES
     '*************************************************************
     Private Sub pic_agregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_agregar.Click
@@ -27,4 +33,15 @@ Public Class frm_app
         frm_show.Show() 'Abre el formulario de detalles de platos.
         Me.Hide()
     End Sub
+    '*************************************************************
+    '                  CERRAR SESIÓN
+    '*************************************************************
+    Private Sub pic_cerrar_sesion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_cerrar_sesion.Click
+        Funciones.user = ""
+        Funciones.limpiar_login()
+        frm_login.Show()
+        Me.Close()
+
+    End Sub
+
 End Class

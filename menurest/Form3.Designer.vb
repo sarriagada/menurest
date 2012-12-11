@@ -25,8 +25,10 @@ Partial Class frm_app
         Me.pic_ver = New System.Windows.Forms.PictureBox
         Me.pic_agregar = New System.Windows.Forms.PictureBox
         Me.lbl_usuario = New System.Windows.Forms.Label
+        Me.pic_cerrar_sesion = New System.Windows.Forms.PictureBox
         CType(Me.pic_ver, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pic_agregar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic_cerrar_sesion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lst_rest
@@ -50,7 +52,7 @@ Partial Class frm_app
         'pic_ver
         '
         Me.pic_ver.Image = CType(resources.GetObject("pic_ver.Image"), System.Drawing.Image)
-        Me.pic_ver.Location = New System.Drawing.Point(49, 120)
+        Me.pic_ver.Location = New System.Drawing.Point(39, 121)
         Me.pic_ver.Name = "pic_ver"
         Me.pic_ver.Size = New System.Drawing.Size(79, 42)
         Me.pic_ver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -60,7 +62,7 @@ Partial Class frm_app
         'pic_agregar
         '
         Me.pic_agregar.Image = CType(resources.GetObject("pic_agregar.Image"), System.Drawing.Image)
-        Me.pic_agregar.Location = New System.Drawing.Point(33, 174)
+        Me.pic_agregar.Location = New System.Drawing.Point(24, 182)
         Me.pic_agregar.Name = "pic_agregar"
         Me.pic_agregar.Size = New System.Drawing.Size(113, 41)
         Me.pic_agregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -78,12 +80,23 @@ Partial Class frm_app
         Me.lbl_usuario.Size = New System.Drawing.Size(0, 21)
         Me.lbl_usuario.TabIndex = 8
         '
+        'pic_cerrar_sesion
+        '
+        Me.pic_cerrar_sesion.Image = CType(resources.GetObject("pic_cerrar_sesion.Image"), System.Drawing.Image)
+        Me.pic_cerrar_sesion.Location = New System.Drawing.Point(351, 252)
+        Me.pic_cerrar_sesion.Name = "pic_cerrar_sesion"
+        Me.pic_cerrar_sesion.Size = New System.Drawing.Size(103, 30)
+        Me.pic_cerrar_sesion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_cerrar_sesion.TabIndex = 9
+        Me.pic_cerrar_sesion.TabStop = False
+        '
         'frm_app
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(460, 282)
+        Me.Controls.Add(Me.pic_cerrar_sesion)
         Me.Controls.Add(Me.lbl_usuario)
         Me.Controls.Add(Me.pic_agregar)
         Me.Controls.Add(Me.pic_ver)
@@ -96,6 +109,7 @@ Partial Class frm_app
         Me.Text = "menurest"
         CType(Me.pic_ver, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pic_agregar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic_cerrar_sesion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -105,4 +119,5 @@ Partial Class frm_app
     Friend WithEvents pic_ver As System.Windows.Forms.PictureBox
     Friend WithEvents pic_agregar As System.Windows.Forms.PictureBox
     Friend WithEvents lbl_usuario As System.Windows.Forms.Label
+    Friend WithEvents pic_cerrar_sesion As System.Windows.Forms.PictureBox
 End Class
