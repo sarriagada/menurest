@@ -10,7 +10,7 @@ Module Funciones
     Public rest As String     'Nombre del restaurant seleccionado actualmente.
     Public plato As String    'Nombre del plato seleccionado actualmente.
     'CONEXIONES A LA DB
-    Dim sSQL As String 'String que guarda el query de la consulta.
+    Public sSQL As String 'String que guarda el query de la consulta.
     Dim conex As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source= " + My.Application.Info.DirectoryPath + "\db_menurest1.mdb") 'objeto de Conexión.
     Dim comm As New OleDbCommand    'objeto de Comandos.
     Dim dr As OleDbDataReader       'DataReader.
@@ -262,13 +262,14 @@ Module Funciones
                 MsgBox("Nuevo restaurant creado correctamente.")
                 limpiar_edit_rest()
                 frm_add.Show()
-                frm_edicion_rest.Hide()
+                frm_edicion_rest.Close()
             End If
         Catch ex As Exception
             MsgBox("Error en la conexión a la DB" & vbCrLf & vbCrLf & ex.Message)
         End Try
     End Sub
-    'Editar un restaurante que ya se encuentra en la cuenta del usuario.
+    '-------------------------------------------------------------
+    'Editar un restaurant que ya se encuentra en la cuenta del usuario.
     Sub edit_rest()
         Try
             'Query.
@@ -304,6 +305,99 @@ Module Funciones
             MsgBox("Error en la conexión a la DB" & vbCrLf & vbCrLf & ex.Message)
         End Try
     End Sub
+    '-------------------------------------------------------------
+    ' Agregar un nuevo plato.
+    Sub add_plato()
+        Try
+            'Query.
+            sSQL = "Select * from rest where nombre = '" & rest & "' and id_usuario = " & id_user & ""
+
+            CONECTAR(sSQL) 'Abrimos conexión con la db.
+
+            dt.Reset()
+            dt.Load(comm.ExecuteReader)
+
+            id_rest = dt.Rows.Item(0).Item(0)
+
+            sSQL = "Select * from platos where id_rest = " & id_rest & " and nombre = '" & frm_edicion_platos.txt_nombre_plato.Text & "'"
+
+            CONECTAR(sSQL) 'Abrimos conexión con la db.
+
+            dt.Reset()
+            dt.Load(comm.ExecuteReader)
+
+            'Verifico si el nombre ya existe.
+            If (dt.Rows.Count > 0) Then
+                MsgBox("El nombre del plato ingresado ya se encuentra en su lista.")
+                limpiar_edit_platos()
+            Else
+                'Query.
+                sSQL = "insert into platos(id_rest, nombre,descripcion, precio) values(" & id_rest & ",'" & frm_edicion_platos.txt_nombre_plato.Text & "', '" & frm_edicion_platos.txt_descripcion_plato.Text & "', " & CInt(frm_edicion_platos.txt_precio.Text) & ")"
+                'Abre la conexión.
+                CONECTAR(sSQL)
+
+                comm.ExecuteNonQuery()
+
+                'Muestra un mensaje y vuelve al form de edición.
+                MsgBox("Nuevo plato creado correctamente.")
+                limpiar_edit_platos()
+                frm_add.Show()
+                frm_edicion_platos.Close()
+            End If
+        Catch ex As Exception
+            MsgBox("Error en la conexión a la DB" & vbCrLf & vbCrLf & ex.Message)
+        End Try
+
+    End Sub
+
+    '-------------------------------------------------------------
+    'Editar un plato que ya se encuentra en la cuenta del usuario.
+    Sub edit_plato()
+        Try
+            'Query.
+            sSQL = "Select * from rest where nombre = '" & rest & "' and id_usuario = " & id_user & ""
+
+            CONECTAR(sSQL) 'Abrimos conexión con la db.
+
+            dt.Reset()
+            dt.Load(comm.ExecuteReader)
+
+            id_rest = dt.Rows.Item(0).Item(0)
+
+            'Query.
+            sSQL = "Select * from platos where id_rest = " & id_rest & " and nombre = '" & frm_edicion_platos.txt_nombre_plato.Text & "'"
+
+            CONECTAR(sSQL) 'Abrimos conexión con la db.
+
+            dt.Reset()
+            dt.Load(comm.ExecuteReader)
+
+            'Verifico si el nombre ya existe.
+            If (dt.Rows.Count > 0) Then
+
+                'Query.
+                sSQL = "update platos set id_rest = '" & id_rest & "', nombre = '" & frm_edicion_platos.txt_nombre_plato.Text & "',descripcion = '" & frm_edicion_platos.txt_descripcion_plato.Text & "', precio = " & CInt(frm_edicion_platos.txt_precio.Text) & " where id_plato = " & dt.Rows.Item(0).Item(0) & ""
+
+                If (MsgBox("¿Está seguro de querer modificar un plato ya existente?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
+                    'Abre la conexión.
+                    CONECTAR(sSQL)
+                    comm.ExecuteNonQuery()
+                    MsgBox("Plato modificado correctamente.")
+                    frm_add.Show()
+                    frm_edicion_platos.Close()
+
+                Else
+                    frm_add.Show()
+                    frm_edicion_platos.Close()
+                End If
+            Else
+                MsgBox("El plato que desea modificar no existe.")
+            End If
+        Catch ex As Exception
+            MsgBox("Error en la conexión a la DB" & vbCrLf & vbCrLf & ex.Message)
+        End Try
+
+    End Sub
 
     '*************************************************************
     '                         LIMPIAR
@@ -337,5 +431,20 @@ Module Funciones
         frm_edicion_rest.txt_dir_rest.Text = ""
         frm_edicion_rest.txt_nombre_rest.Focus()
     End Sub
-
+    'Limpiar todos los campos del form edicion platos
+    Sub limpiar_edit_platos()
+        frm_edicion_platos.txt_nombre_plato.Text = ""
+        frm_edicion_platos.txt_descripcion_plato.Text = ""
+        frm_edicion_platos.txt_precio.Text = ""
+        frm_edicion_platos.txt_nombre_plato.Focus()
+    End Sub
+    '*************************************************************
+    '                         SALIR
+    '*************************************************************
+    'Cierra la aplicación.
+    Sub salir()
+        If (MsgBox("¿Desea salir?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
+            End
+        End If
+    End Sub
 End Module

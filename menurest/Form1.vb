@@ -25,4 +25,8 @@ Public Class frm_login
         Funciones.limpiar_registro()
         Me.Hide()
     End Sub
+
+    Private Sub pic_salir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_salir.Click
+        Funciones.salir()
+    End Sub
 End Class

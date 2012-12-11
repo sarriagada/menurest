@@ -16,7 +16,22 @@ Public Class frm_add
         frm_edicion_rest.Text = "Editar restaurante"
         Me.Close()
     End Sub
-
+    '*************************************************************
+    '              AGREGAR NUEVO PLATO
+    '*************************************************************
+    Private Sub pic_nuevo_plato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_nuevo_plato.Click
+        frm_edicion_platos.Show()
+        frm_edicion_platos.Text = "Agregar platos"
+        Me.Close()
+    End Sub
+    '*************************************************************
+    '              EDITAR PLATO
+    '*************************************************************
+    Private Sub pic_editar_plato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_editar_plato.Click
+        frm_edicion_platos.Show()
+        frm_edicion_platos.Text = "Editar platos"
+        Me.Close()
+    End Sub
     '*************************************************************
     '              VOLVER A LA APLICACIÓN
     '*************************************************************

@@ -25,9 +25,11 @@ Partial Class frm_login
         Me.pic_entrar = New System.Windows.Forms.PictureBox
         Me.pic_registrarse = New System.Windows.Forms.PictureBox
         Me.pic_entrar_on = New System.Windows.Forms.PictureBox
+        Me.pic_salir = New System.Windows.Forms.PictureBox
         CType(Me.pic_entrar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pic_registrarse, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pic_entrar_on, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic_salir, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txt_nombre
@@ -78,12 +80,23 @@ Partial Class frm_login
         Me.pic_entrar_on.TabStop = False
         Me.pic_entrar_on.Visible = False
         '
+        'pic_salir
+        '
+        Me.pic_salir.Image = CType(resources.GetObject("pic_salir.Image"), System.Drawing.Image)
+        Me.pic_salir.Location = New System.Drawing.Point(10, 239)
+        Me.pic_salir.Name = "pic_salir"
+        Me.pic_salir.Size = New System.Drawing.Size(50, 17)
+        Me.pic_salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_salir.TabIndex = 6
+        Me.pic_salir.TabStop = False
+        '
         'frm_login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(297, 266)
+        Me.Controls.Add(Me.pic_salir)
         Me.Controls.Add(Me.pic_entrar_on)
         Me.Controls.Add(Me.pic_registrarse)
         Me.Controls.Add(Me.pic_entrar)
@@ -97,6 +110,7 @@ Partial Class frm_login
         CType(Me.pic_entrar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pic_registrarse, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pic_entrar_on, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic_salir, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -106,5 +120,6 @@ Partial Class frm_login
     Friend WithEvents pic_entrar As System.Windows.Forms.PictureBox
     Friend WithEvents pic_registrarse As System.Windows.Forms.PictureBox
     Friend WithEvents pic_entrar_on As System.Windows.Forms.PictureBox
+    Friend WithEvents pic_salir As System.Windows.Forms.PictureBox
 
 End Class
