@@ -18,6 +18,7 @@ Module Funciones
     Dim ds As DataSet               'DataSet.
     'VALIDACIONES
     Public valida_r As Boolean 'Bandera usada para validar el registro.
+    Public valida_rest As Boolean 'Bandera usada para validar datos de restaurantes.
 
     '*************************************************************
     '                      VALIDACIONES
@@ -43,6 +44,24 @@ Module Funciones
                 End If
             End If
         End If
+    End Sub
+    'Valida datos del restaurante.
+    Sub validar_rest()
+        If (frm_edicion_rest.txt_nombre_rest.Text = "") Or (frm_edicion_rest.txt_descripcion_rest.Text = "") Or (frm_edicion_rest.txt_tel_rest.Text = "") Or (frm_edicion_rest.txt_dir_rest.Text = "") Then
+            MsgBox("Los datos ingresados no son válidos")
+            valida_rest = False
+            limpiar_edit_rest()
+        Else
+            If (IsNumeric(frm_edicion_rest.txt_tel_rest.Text) = False) Or (Strings.Len(frm_edicion_rest.txt_tel_rest.Text) < 7) Then
+                MsgBox("El teléfono debe ser un número de al menos 7 cifras")
+                valida_rest = False
+                limpiar_edit_rest()
+            Else
+                valida_rest = True
+            End If
+
+        End If
+
     End Sub
     '*************************************************************
     '              CONEXIONES A LA BASE DE DATOS
@@ -137,10 +156,6 @@ Module Funciones
         Catch ex As Exception
             MsgBox("Error en la conexión a la DB" & vbCrLf & vbCrLf & ex.Message)
         End Try
-
-        'Cierro la conexión.
-        dt.Reset()
-        conex.Close()
     End Sub
     '-------------------------------------------------------------
     'Mostrar listas de restaurantes y de platos.
@@ -218,6 +233,77 @@ Module Funciones
             frm_show.lbl_nombre_rest.Text = rest
         End If
     End Sub
+    '-------------------------------------------------------------
+    ' Agregar nuevo restaurant.
+    Sub add_rest()
+
+        Try
+            'Query.
+            sSQL = "Select *  from rest where id_usuario = " & id_user & " and nombre = '" & frm_edicion_rest.txt_nombre_rest.Text & "'"
+
+            CONECTAR(sSQL) 'Abrimos conexión con la db.
+
+            dt.Reset()
+            dt.Load(comm.ExecuteReader)
+
+            'Verifico si el nombre ya existe.
+            If (dt.Rows.Count > 0) Then
+                MsgBox("El nombre del restaurante ingresado ya se encuentra en su lista")
+                limpiar_edit_rest()
+            Else
+                'Query.
+                sSQL = "insert into rest(id_usuario, nombre,descripcion, telefono, direccion) values(" & id_user & ",'" & frm_edicion_rest.txt_nombre_rest.Text & "', '" & frm_edicion_rest.txt_descripcion_rest.Text & "', " & Convert.ToInt64(frm_edicion_rest.txt_tel_rest.Text) & ",'" & frm_edicion_rest.txt_dir_rest.Text & "')"
+                'Abre la conexión.
+                CONECTAR(sSQL)
+
+                comm.ExecuteNonQuery()
+
+                'Muestra un mensaje y vuelve al form de edición.
+                MsgBox("Nuevo restaurant creado correctamente.")
+                limpiar_edit_rest()
+                frm_add.Show()
+                frm_edicion_rest.Hide()
+            End If
+        Catch ex As Exception
+            MsgBox("Error en la conexión a la DB" & vbCrLf & vbCrLf & ex.Message)
+        End Try
+    End Sub
+    'Editar un restaurante que ya se encuentra en la cuenta del usuario.
+    Sub edit_rest()
+        Try
+            'Query.
+            sSQL = "Select *  from rest where id_usuario = " & id_user & " and nombre = '" & frm_edicion_rest.txt_nombre_rest.Text & "'"
+
+            CONECTAR(sSQL) 'Abrimos conexión con la db.
+
+            dt.Reset()
+            dt.Load(comm.ExecuteReader)
+
+            'Verifico si el nombre ya existe.
+            If (dt.Rows.Count > 0) Then
+
+                'Query.
+                sSQL = "update rest set id_usuario = '" & id_user & "', nombre = '" & frm_edicion_rest.txt_nombre_rest.Text & "',descripcion = '" & frm_edicion_rest.txt_descripcion_rest.Text & "', telefono = " & Convert.ToInt64(frm_edicion_rest.txt_tel_rest.Text) & ", direccion = '" & frm_edicion_rest.txt_dir_rest.Text & "' where id_rest = " & dt.Rows.Item(0).Item(0) & ""
+
+                If (MsgBox("¿Está seguro de querer modificar un restaurante ya existente?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
+                    'Abre la conexión.
+                    CONECTAR(sSQL)
+                    comm.ExecuteNonQuery()
+                    MsgBox("Restaurante modificado correctamente.")
+                    frm_add.Show()
+                    frm_edicion_rest.Close()
+
+                Else
+                    frm_add.Show()
+                    frm_edicion_rest.Close()
+                End If
+            Else
+                MsgBox("El restaurante que desea modificar no existe")
+            End If
+        Catch ex As Exception
+            MsgBox("Error en la conexión a la DB" & vbCrLf & vbCrLf & ex.Message)
+        End Try
+    End Sub
 
     '*************************************************************
     '                         LIMPIAR
@@ -242,6 +328,14 @@ Module Funciones
         frm_show.lbl_descripcion_plato.Text = ""
         frm_show.lbl_precio.Text = ""
         frm_show.lbl_nombre_rest.Text = ""
+    End Sub
+    'Limpiar todos los campos del form agregar rest
+    Sub limpiar_edit_rest()
+        frm_edicion_rest.txt_nombre_rest.Text = ""
+        frm_edicion_rest.txt_descripcion_rest.Text = ""
+        frm_edicion_rest.txt_tel_rest.Text = ""
+        frm_edicion_rest.txt_dir_rest.Text = ""
+        frm_edicion_rest.txt_nombre_rest.Focus()
     End Sub
 
 End Module

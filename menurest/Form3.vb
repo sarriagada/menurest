@@ -24,7 +24,7 @@ Public Class frm_app
     '*************************************************************
     Private Sub pic_agregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_agregar.Click
         frm_add.Show() 'Abre el formulario de edición.
-        Me.Hide()
+        Me.Close()
     End Sub
     '*************************************************************
     '                  VER DETALLES DE PLATOS 

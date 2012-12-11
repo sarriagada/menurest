@@ -19,111 +19,101 @@ Partial Class frm_add
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lbl_nombre_rest = New System.Windows.Forms.Label
-        Me.txt_nombre_rest = New System.Windows.Forms.TextBox
-        Me.lbl_platos = New System.Windows.Forms.Label
-        Me.lst_platos = New System.Windows.Forms.ListBox
-        Me.lbl_add = New System.Windows.Forms.Label
-        Me.lbl_editar = New System.Windows.Forms.Label
-        Me.lbl_borrar = New System.Windows.Forms.Label
-        Me.lbl_volver = New System.Windows.Forms.Label
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_add))
+        Me.pic_nuevo_rest = New System.Windows.Forms.PictureBox
+        Me.pic_nuevo_plato = New System.Windows.Forms.PictureBox
+        Me.pic_editar_rest = New System.Windows.Forms.PictureBox
+        Me.pic_editar_plato = New System.Windows.Forms.PictureBox
+        Me.pic_volver = New System.Windows.Forms.PictureBox
+        CType(Me.pic_nuevo_rest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic_nuevo_plato, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic_editar_rest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic_editar_plato, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic_volver, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'lbl_nombre_rest
+        'pic_nuevo_rest
         '
-        Me.lbl_nombre_rest.AutoSize = True
-        Me.lbl_nombre_rest.Location = New System.Drawing.Point(23, 27)
-        Me.lbl_nombre_rest.Name = "lbl_nombre_rest"
-        Me.lbl_nombre_rest.Size = New System.Drawing.Size(82, 17)
-        Me.lbl_nombre_rest.TabIndex = 0
-        Me.lbl_nombre_rest.Text = "Restaurant:"
+        Me.pic_nuevo_rest.BackgroundImage = CType(resources.GetObject("pic_nuevo_rest.BackgroundImage"), System.Drawing.Image)
+        Me.pic_nuevo_rest.Image = CType(resources.GetObject("pic_nuevo_rest.Image"), System.Drawing.Image)
+        Me.pic_nuevo_rest.Location = New System.Drawing.Point(60, 100)
+        Me.pic_nuevo_rest.Name = "pic_nuevo_rest"
+        Me.pic_nuevo_rest.Size = New System.Drawing.Size(158, 51)
+        Me.pic_nuevo_rest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_nuevo_rest.TabIndex = 10
+        Me.pic_nuevo_rest.TabStop = False
         '
-        'txt_nombre_rest
+        'pic_nuevo_plato
         '
-        Me.txt_nombre_rest.Location = New System.Drawing.Point(122, 27)
-        Me.txt_nombre_rest.Name = "txt_nombre_rest"
-        Me.txt_nombre_rest.Size = New System.Drawing.Size(120, 22)
-        Me.txt_nombre_rest.TabIndex = 1
+        Me.pic_nuevo_plato.BackgroundImage = CType(resources.GetObject("pic_nuevo_plato.BackgroundImage"), System.Drawing.Image)
+        Me.pic_nuevo_plato.Image = CType(resources.GetObject("pic_nuevo_plato.Image"), System.Drawing.Image)
+        Me.pic_nuevo_plato.Location = New System.Drawing.Point(226, 100)
+        Me.pic_nuevo_plato.Name = "pic_nuevo_plato"
+        Me.pic_nuevo_plato.Size = New System.Drawing.Size(158, 51)
+        Me.pic_nuevo_plato.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_nuevo_plato.TabIndex = 11
+        Me.pic_nuevo_plato.TabStop = False
         '
-        'lbl_platos
+        'pic_editar_rest
         '
-        Me.lbl_platos.AutoSize = True
-        Me.lbl_platos.Location = New System.Drawing.Point(23, 68)
-        Me.lbl_platos.Name = "lbl_platos"
-        Me.lbl_platos.Size = New System.Drawing.Size(51, 17)
-        Me.lbl_platos.TabIndex = 2
-        Me.lbl_platos.Text = "Platos:"
+        Me.pic_editar_rest.BackgroundImage = CType(resources.GetObject("pic_editar_rest.BackgroundImage"), System.Drawing.Image)
+        Me.pic_editar_rest.Image = CType(resources.GetObject("pic_editar_rest.Image"), System.Drawing.Image)
+        Me.pic_editar_rest.Location = New System.Drawing.Point(61, 154)
+        Me.pic_editar_rest.Name = "pic_editar_rest"
+        Me.pic_editar_rest.Size = New System.Drawing.Size(142, 49)
+        Me.pic_editar_rest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_editar_rest.TabIndex = 12
+        Me.pic_editar_rest.TabStop = False
         '
-        'lst_platos
+        'pic_editar_plato
         '
-        Me.lst_platos.FormattingEnabled = True
-        Me.lst_platos.ItemHeight = 16
-        Me.lst_platos.Location = New System.Drawing.Point(122, 68)
-        Me.lst_platos.Name = "lst_platos"
-        Me.lst_platos.Size = New System.Drawing.Size(120, 84)
-        Me.lst_platos.TabIndex = 3
+        Me.pic_editar_plato.BackgroundImage = CType(resources.GetObject("pic_editar_plato.BackgroundImage"), System.Drawing.Image)
+        Me.pic_editar_plato.Image = CType(resources.GetObject("pic_editar_plato.Image"), System.Drawing.Image)
+        Me.pic_editar_plato.Location = New System.Drawing.Point(227, 154)
+        Me.pic_editar_plato.Name = "pic_editar_plato"
+        Me.pic_editar_plato.Size = New System.Drawing.Size(142, 49)
+        Me.pic_editar_plato.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_editar_plato.TabIndex = 13
+        Me.pic_editar_plato.TabStop = False
         '
-        'lbl_add
+        'pic_volver
         '
-        Me.lbl_add.AutoSize = True
-        Me.lbl_add.Location = New System.Drawing.Point(303, 27)
-        Me.lbl_add.Name = "lbl_add"
-        Me.lbl_add.Size = New System.Drawing.Size(59, 17)
-        Me.lbl_add.TabIndex = 4
-        Me.lbl_add.Text = "Agregar"
-        '
-        'lbl_editar
-        '
-        Me.lbl_editar.AutoSize = True
-        Me.lbl_editar.Location = New System.Drawing.Point(303, 58)
-        Me.lbl_editar.Name = "lbl_editar"
-        Me.lbl_editar.Size = New System.Drawing.Size(45, 17)
-        Me.lbl_editar.TabIndex = 5
-        Me.lbl_editar.Text = "Editar"
-        '
-        'lbl_borrar
-        '
-        Me.lbl_borrar.AutoSize = True
-        Me.lbl_borrar.Location = New System.Drawing.Point(303, 88)
-        Me.lbl_borrar.Name = "lbl_borrar"
-        Me.lbl_borrar.Size = New System.Drawing.Size(48, 17)
-        Me.lbl_borrar.TabIndex = 6
-        Me.lbl_borrar.Text = "Borrar"
-        '
-        'lbl_volver
-        '
-        Me.lbl_volver.AutoSize = True
-        Me.lbl_volver.Location = New System.Drawing.Point(303, 149)
-        Me.lbl_volver.Name = "lbl_volver"
-        Me.lbl_volver.Size = New System.Drawing.Size(48, 17)
-        Me.lbl_volver.TabIndex = 7
-        Me.lbl_volver.Text = "Volver"
+        Me.pic_volver.Image = CType(resources.GetObject("pic_volver.Image"), System.Drawing.Image)
+        Me.pic_volver.Location = New System.Drawing.Point(170, 219)
+        Me.pic_volver.Name = "pic_volver"
+        Me.pic_volver.Size = New System.Drawing.Size(106, 39)
+        Me.pic_volver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_volver.TabIndex = 14
+        Me.pic_volver.TabStop = False
         '
         'frm_add
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(384, 185)
-        Me.Controls.Add(Me.lbl_volver)
-        Me.Controls.Add(Me.lbl_borrar)
-        Me.Controls.Add(Me.lbl_editar)
-        Me.Controls.Add(Me.lbl_add)
-        Me.Controls.Add(Me.lst_platos)
-        Me.Controls.Add(Me.lbl_platos)
-        Me.Controls.Add(Me.txt_nombre_rest)
-        Me.Controls.Add(Me.lbl_nombre_rest)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.ClientSize = New System.Drawing.Size(452, 272)
+        Me.Controls.Add(Me.pic_volver)
+        Me.Controls.Add(Me.pic_editar_plato)
+        Me.Controls.Add(Me.pic_editar_rest)
+        Me.Controls.Add(Me.pic_nuevo_plato)
+        Me.Controls.Add(Me.pic_nuevo_rest)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frm_add"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "menurest"
+        CType(Me.pic_nuevo_rest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic_nuevo_plato, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic_editar_rest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic_editar_plato, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic_volver, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents lbl_nombre_rest As System.Windows.Forms.Label
-    Friend WithEvents txt_nombre_rest As System.Windows.Forms.TextBox
-    Friend WithEvents lbl_platos As System.Windows.Forms.Label
-    Friend WithEvents lst_platos As System.Windows.Forms.ListBox
-    Friend WithEvents lbl_add As System.Windows.Forms.Label
-    Friend WithEvents lbl_editar As System.Windows.Forms.Label
-    Friend WithEvents lbl_borrar As System.Windows.Forms.Label
-    Friend WithEvents lbl_volver As System.Windows.Forms.Label
+    Friend WithEvents pic_nuevo_rest As System.Windows.Forms.PictureBox
+    Friend WithEvents pic_nuevo_plato As System.Windows.Forms.PictureBox
+    Friend WithEvents pic_editar_rest As System.Windows.Forms.PictureBox
+    Friend WithEvents pic_editar_plato As System.Windows.Forms.PictureBox
+    Friend WithEvents pic_volver As System.Windows.Forms.PictureBox
 End Class

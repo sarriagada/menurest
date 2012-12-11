@@ -62,7 +62,7 @@ Partial Class frm_app
         'pic_agregar
         '
         Me.pic_agregar.Image = CType(resources.GetObject("pic_agregar.Image"), System.Drawing.Image)
-        Me.pic_agregar.Location = New System.Drawing.Point(24, 182)
+        Me.pic_agregar.Location = New System.Drawing.Point(22, 179)
         Me.pic_agregar.Name = "pic_agregar"
         Me.pic_agregar.Size = New System.Drawing.Size(113, 41)
         Me.pic_agregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
