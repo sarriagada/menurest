@@ -30,8 +30,12 @@ Public Class frm_app
     '                  VER DETALLES DE PLATOS 
     '*************************************************************
     Private Sub pic_ver_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_ver.Click
-        frm_show.Show() 'Abre el formulario de detalles de platos.
-        Me.Hide()
+        If (lst_platos.SelectedIndex = -1) Then
+            MsgBox("Debe seleccionar un plato para mostrar sus detalles.")
+        Else
+            frm_show.Show() 'Abre el formulario de detalles de platos.
+            Me.Hide()
+        End If
     End Sub
     '*************************************************************
     '                  CERRAR SESIÓN

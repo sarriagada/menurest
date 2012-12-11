@@ -20,10 +20,14 @@ Public Class frm_edicion_platos
     '                      GUARDAR
     '*************************************************************
     Private Sub pic_guardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_guardar.Click
-        If (Me.Text = "Agregar platos") Then
-            Funciones.add_plato()
+        If (lst_restaurantes.SelectedIndex = -1) Then
+            MsgBox("Debe seleccionar el restaurant al que quiere agregar/modificar platos")
         Else
-            Funciones.edit_plato()
+            If (Me.Text = "Agregar platos") Then
+                Funciones.add_plato()
+            Else
+                Funciones.edit_plato()
+            End If
         End If
     End Sub
     '*************************************************************
