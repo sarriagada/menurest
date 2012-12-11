@@ -13,6 +13,13 @@ Public Class frm_app
     Private Sub lst_rest_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lst_rest.SelectedIndexChanged
         MOSTRAR_PLATOS() 'Muestra los platos del restaurante seleccionado del usuario actual.
     End Sub
+
+    Private Sub lst_platos_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles lst_platos.KeyPress
+        If (lst_platos.SelectedIndex <> -1) Then
+            frm_show.Show() 'Abre el formulario de detalles de platos.
+            Me.Hide()
+        End If
+    End Sub
     '*************************************************************
     '                  SELECCIONAR PLATO
     '*************************************************************

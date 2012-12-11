@@ -17,6 +17,13 @@ Public Class frm_login
     Private Sub pic_entrar_on_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_entrar_on.Click
         Funciones.LOGIN()    'Se loguea.
     End Sub
+    Private Sub frm_login_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
+        If (e.KeyChar = Chr(13)) Then
+            Funciones.LOGIN()    'Se loguea.
+        End If
+    End Sub
+    '************************************************
+    '                REGISTRARSE
     '************************************************
     'Abre el formulario de registro.
     Private Sub pic_registrarse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_registrarse.Click
@@ -25,8 +32,12 @@ Public Class frm_login
         Funciones.limpiar_registro()
         Me.Hide()
     End Sub
-
+    '************************************************
+    '                SALIR
+    '************************************************
     Private Sub pic_salir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_salir.Click
         Funciones.salir()
     End Sub
+
+
 End Class

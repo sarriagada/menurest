@@ -103,6 +103,7 @@ Partial Class frm_login
         Me.Controls.Add(Me.txt_pass)
         Me.Controls.Add(Me.txt_nombre)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frm_login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
