@@ -4,11 +4,50 @@ Module Funciones
     '                  DECLARACIÓN DE VARIABLES
     '*************************************************************
     'USUARIO
-    Public user As String   'Nombre de usuario actual (logueado).
-    Public id_user As Integer 'Id de usuario actual (logueado).
-    Public id_rest As Integer 'Id del restaurant seleccionado actualmente.
-    Public rest As String     'Nombre del restaurant seleccionado actualmente.
-    Public plato As String    'Nombre del plato seleccionado actualmente.
+    Class Usuario
+        Private user As String   'Nombre de usuario actual (logueado).
+        Private id_user As Integer 'Id de usuario actual (logueado).
+        Private id_rest As Integer 'Id del restaurant seleccionado actualmente.
+        Private rest As String     'Nombre del restaurant seleccionado actualmente.
+        Private plato As String    'Nombre del plato seleccionado actualmente.
+        'get & set de user.
+        Function getUser()
+            Return user
+        End Function
+        Public Sub setUser(ByVal valor As String)
+            user = valor
+        End Sub
+        'get & set de id_user.
+        Function getId_User()
+            Return id_user
+        End Function
+        Public Sub setId_User(ByVal valor As Integer)
+            id_user = valor
+        End Sub
+        'get & set de id_rest.
+        Function getId_Rest()
+            Return id_rest
+        End Function
+        Public Sub setId_Rest(ByVal valor As Integer)
+            id_rest = valor
+        End Sub
+        'get & set de rest.
+        Function getRest()
+            Return rest
+        End Function
+        Public Sub setRest(ByVal valor As String)
+            rest = valor
+        End Sub
+        'get & set de plato.
+        Function getPlato()
+            Return plato
+        End Function
+        Public Sub setPlato(ByVal valor As String)
+            plato = valor
+        End Sub
+    End Class
+    Public usuario1 As New Usuario
+
     'CONEXIONES A LA DB
     Public sSQL As String 'String que guarda el query de la consulta.
     Dim conex As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source= " + My.Application.Info.DirectoryPath + "\db_menurest1.mdb") 'objeto de Conexión.
@@ -96,12 +135,12 @@ Module Funciones
         'Validación de resultados.
         If (dr.HasRows) Then
             'Guardo el nombre de usuario activo.
-            user = frm_login.txt_nombre.Text
+            usuario1.setUser(frm_login.txt_nombre.Text)
 
             'Guardo el id de usuario activo.
             'Para ello hago una lectura del campo 0 del datareader.
             If (dr.Read) Then
-                id_user = dr(0)
+                usuario1.setId_User(dr(0))
             Else
                 MsgBox("Error al leer id de usuario de la DB.")
             End If
@@ -185,7 +224,7 @@ Module Funciones
     'Muestra la lista de restaurantes asociados a la id del usuario activo.
     Sub MOSTRAR_REST()
         'Query de consulta.
-        sSQL = "Select * from rest where id_usuario = " & id_user
+        sSQL = "Select * from rest where id_usuario = " & usuario1.getId_User
 
         MOSTRAR(sSQL, frm_app.lst_rest) 'Mostrar lista de rest.
 
@@ -194,7 +233,7 @@ Module Funciones
     'Muestra la lista de platos en los restaurantes asociados a la id del usuario activo.
     Sub MOSTRAR_PLATOS()
         Dim index As Integer = frm_app.lst_rest.SelectedIndex 'Guardo el índice del elemento seleccionado.
-        rest = frm_app.lst_rest.SelectedItem
+        usuario1.setRest(frm_app.lst_rest.SelectedItem)
 
         'Query de consulta (Buscar id de restaurante).
         sSQL = "Select * from rest where nombre = '" & frm_app.lst_rest.SelectedItem & "'"
@@ -206,11 +245,11 @@ Module Funciones
 
         'Guardo la id del restaurant actual
         If (dr.Read) Then
-            id_rest = dr(0)
+            usuario1.setId_Rest(dr(0))
         End If
 
         'Query de consulta (Mostrar platos asociados al restaurante actual).
-        sSQL = "Select * from platos where id_rest = " & id_rest
+        sSQL = "Select * from platos where id_rest = " & usuario1.getId_Rest
 
         MOSTRAR(sSQL, frm_app.lst_platos) 'Mostrar lista de platos.
 
@@ -219,7 +258,7 @@ Module Funciones
     'Muestra los detalles del plato seleccionado.
     Sub ver_plato()
 
-        sSQL = "Select * from platos where nombre = '" & plato & "' and id_rest = " & id_rest
+        sSQL = "Select * from platos where nombre = '" & usuario1.getPlato & "' and id_rest = " & usuario1.getId_Rest
 
         'Abrimos la conexión con la db.
         CONECTAR(sSQL)
@@ -230,7 +269,7 @@ Module Funciones
             frm_show.lbl_nombre_plato.Text = dr(2)
             frm_show.lbl_descripcion_plato.Text = dr(3)
             frm_show.lbl_precio.Text = dr(4)
-            frm_show.lbl_nombre_rest.Text = rest
+            frm_show.lbl_nombre_rest.Text = usuario1.getRest
         End If
     End Sub
     '-------------------------------------------------------------
@@ -239,7 +278,7 @@ Module Funciones
 
         Try
             'Query.
-            sSQL = "Select *  from rest where id_usuario = " & id_user & " and nombre = '" & frm_edicion_rest.txt_nombre_rest.Text & "'"
+            sSQL = "Select *  from rest where id_usuario = " & usuario1.getId_User & " and nombre = '" & frm_edicion_rest.txt_nombre_rest.Text & "'"
 
             CONECTAR(sSQL) 'Abrimos conexión con la db.
 
@@ -252,7 +291,7 @@ Module Funciones
                 limpiar_edit_rest()
             Else
                 'Query.
-                sSQL = "insert into rest(id_usuario, nombre,descripcion, telefono, direccion) values(" & id_user & ",'" & frm_edicion_rest.txt_nombre_rest.Text & "', '" & frm_edicion_rest.txt_descripcion_rest.Text & "', " & Convert.ToInt64(frm_edicion_rest.txt_tel_rest.Text) & ",'" & frm_edicion_rest.txt_dir_rest.Text & "')"
+                sSQL = "insert into rest(id_usuario, nombre,descripcion, telefono, direccion) values(" & usuario1.getId_User & ",'" & frm_edicion_rest.txt_nombre_rest.Text & "', '" & frm_edicion_rest.txt_descripcion_rest.Text & "', " & Convert.ToInt64(frm_edicion_rest.txt_tel_rest.Text) & ",'" & frm_edicion_rest.txt_dir_rest.Text & "')"
                 'Abre la conexión.
                 CONECTAR(sSQL)
 
@@ -273,7 +312,7 @@ Module Funciones
     Sub edit_rest()
         Try
             'Query.
-            sSQL = "Select *  from rest where id_usuario = " & id_user & " and nombre = '" & frm_edicion_rest.txt_nombre_rest.Text & "'"
+            sSQL = "Select *  from rest where id_usuario = " & usuario1.getId_User & " and nombre = '" & frm_edicion_rest.txt_nombre_rest.Text & "'"
 
             CONECTAR(sSQL) 'Abrimos conexión con la db.
 
@@ -284,7 +323,7 @@ Module Funciones
             If (dt.Rows.Count > 0) Then
 
                 'Query.
-                sSQL = "update rest set id_usuario = '" & id_user & "', nombre = '" & frm_edicion_rest.txt_nombre_rest.Text & "',descripcion = '" & frm_edicion_rest.txt_descripcion_rest.Text & "', telefono = " & Convert.ToInt64(frm_edicion_rest.txt_tel_rest.Text) & ", direccion = '" & frm_edicion_rest.txt_dir_rest.Text & "' where id_rest = " & dt.Rows.Item(0).Item(0) & ""
+                sSQL = "update rest set id_usuario = '" & usuario1.getId_User & "', nombre = '" & frm_edicion_rest.txt_nombre_rest.Text & "',descripcion = '" & frm_edicion_rest.txt_descripcion_rest.Text & "', telefono = " & Convert.ToInt64(frm_edicion_rest.txt_tel_rest.Text) & ", direccion = '" & frm_edicion_rest.txt_dir_rest.Text & "' where id_rest = " & dt.Rows.Item(0).Item(0) & ""
 
                 If (MsgBox("¿Está seguro de querer modificar un restaurante ya existente?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
                     'Abre la conexión.
@@ -310,16 +349,16 @@ Module Funciones
     Sub add_plato()
         Try
             'Query.
-            sSQL = "Select * from rest where nombre = '" & rest & "' and id_usuario = " & id_user & ""
+            sSQL = "Select * from rest where nombre = '" & usuario1.getRest & "' and id_usuario = " & usuario1.getId_User & ""
 
             CONECTAR(sSQL) 'Abrimos conexión con la db.
 
             dt.Reset()
             dt.Load(comm.ExecuteReader)
 
-            id_rest = dt.Rows.Item(0).Item(0)
+            usuario1.setId_Rest(dt.Rows.Item(0).Item(0))
 
-            sSQL = "Select * from platos where id_rest = " & id_rest & " and nombre = '" & frm_edicion_platos.txt_nombre_plato.Text & "'"
+            sSQL = "Select * from platos where id_rest = " & usuario1.getId_Rest & " and nombre = '" & frm_edicion_platos.txt_nombre_plato.Text & "'"
 
             CONECTAR(sSQL) 'Abrimos conexión con la db.
 
@@ -332,7 +371,7 @@ Module Funciones
                 limpiar_edit_platos()
             Else
                 'Query.
-                sSQL = "insert into platos(id_rest, nombre,descripcion, precio) values(" & id_rest & ",'" & frm_edicion_platos.txt_nombre_plato.Text & "', '" & frm_edicion_platos.txt_descripcion_plato.Text & "', " & CInt(frm_edicion_platos.txt_precio.Text) & ")"
+                sSQL = "insert into platos(id_rest, nombre,descripcion, precio) values(" & usuario1.getId_Rest & ",'" & frm_edicion_platos.txt_nombre_plato.Text & "', '" & frm_edicion_platos.txt_descripcion_plato.Text & "', " & CInt(frm_edicion_platos.txt_precio.Text) & ")"
                 'Abre la conexión.
                 CONECTAR(sSQL)
 
@@ -355,17 +394,17 @@ Module Funciones
     Sub edit_plato()
         Try
             'Query.
-            sSQL = "Select * from rest where nombre = '" & rest & "' and id_usuario = " & id_user & ""
+            sSQL = "Select * from rest where nombre = '" & usuario1.getRest & "' and id_usuario = " & usuario1.getId_User & ""
 
             CONECTAR(sSQL) 'Abrimos conexión con la db.
 
             dt.Reset()
             dt.Load(comm.ExecuteReader)
 
-            id_rest = dt.Rows.Item(0).Item(0)
+            usuario1.setId_Rest(dt.Rows.Item(0).Item(0))
 
             'Query.
-            sSQL = "Select * from platos where id_rest = " & id_rest & " and nombre = '" & frm_edicion_platos.txt_nombre_plato.Text & "'"
+            sSQL = "Select * from platos where id_rest = " & usuario1.getId_Rest & " and nombre = '" & frm_edicion_platos.txt_nombre_plato.Text & "'"
 
             CONECTAR(sSQL) 'Abrimos conexión con la db.
 
@@ -376,7 +415,7 @@ Module Funciones
             If (dt.Rows.Count > 0) Then
 
                 'Query.
-                sSQL = "update platos set id_rest = '" & id_rest & "', nombre = '" & frm_edicion_platos.txt_nombre_plato.Text & "',descripcion = '" & frm_edicion_platos.txt_descripcion_plato.Text & "', precio = " & CInt(frm_edicion_platos.txt_precio.Text) & " where id_plato = " & dt.Rows.Item(0).Item(0) & ""
+                sSQL = "update platos set id_rest = '" & usuario1.getId_Rest & "', nombre = '" & frm_edicion_platos.txt_nombre_plato.Text & "',descripcion = '" & frm_edicion_platos.txt_descripcion_plato.Text & "', precio = " & CInt(frm_edicion_platos.txt_precio.Text) & " where id_plato = " & dt.Rows.Item(0).Item(0) & ""
 
                 If (MsgBox("¿Está seguro de querer modificar un plato ya existente?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
                     'Abre la conexión.
@@ -405,19 +444,19 @@ Module Funciones
             MsgBox("Debe seleccionar el plato que desea borrar.")
         Else
             'Confirmación de borrado.
-            If (MsgBox("¿Está seguro que desea borrar el plato" & plato & "?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
+            If (MsgBox("¿Está seguro que desea borrar el plato" & usuario1.getPlato & "?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
                 'Query.
-                sSQL = "Select * from rest where nombre = '" & rest & "' and id_usuario = " & id_user & ""
+                sSQL = "Select * from rest where nombre = '" & usuario1.getRest & "' and id_usuario = " & usuario1.getId_User & ""
 
                 CONECTAR(sSQL) 'Abrimos conexión con la db.
 
                 dt.Reset()
                 dt.Load(comm.ExecuteReader)
 
-                id_rest = dt.Rows.Item(0).Item(0)
+                usuario1.setId_Rest(dt.Rows.Item(0).Item(0))
 
                 'Query.
-                sSQL = "Select * from platos where id_rest = " & id_rest & " and nombre = '" & plato & "'"
+                sSQL = "Select * from platos where id_rest = " & usuario1.getId_Rest & " and nombre = '" & usuario1.getPlato & "'"
 
                 CONECTAR(sSQL) 'Abrimos conexión con la db.
 
@@ -427,7 +466,7 @@ Module Funciones
                 'Query.
                 sSQL = "delete from platos where id_plato = " & dt.Rows.Item(0).Item(0) & ""
 
-                
+
                 CONECTAR(sSQL)
                 comm.ExecuteNonQuery()
                 MsgBox("Plato borrado correctamente.")
@@ -444,20 +483,20 @@ Module Funciones
             MsgBox("Debe seleccionar el restaurant que desea borrar.")
         Else
             'Confirmación de borrado.
-            If (MsgBox("¿Está seguro que desea borrar el restaurante" & rest & "?" & vbCrLf & vbCrLf & "También se borrarán todos los platos pertenecientes al restaurante.", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
-                
+            If (MsgBox("¿Está seguro que desea borrar el restaurante" & usuario1.getRest & "?" & vbCrLf & vbCrLf & "También se borrarán todos los platos pertenecientes al restaurante.", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
+
                 'Query.
-                sSQL = "Select * from rest where nombre = '" & rest & "' and id_usuario = " & id_user & ""
+                sSQL = "Select * from rest where nombre = '" & usuario1.getRest & "' and id_usuario = " & usuario1.getId_User & ""
 
                 CONECTAR(sSQL) 'Abrimos conexión con la db.
 
                 dt.Reset()
                 dt.Load(comm.ExecuteReader)
 
-                id_rest = dt.Rows.Item(0).Item(0)
+                usuario1.setId_Rest(dt.Rows.Item(0).Item(0))
 
                 'Query.
-                sSQL = "Delete from platos where id_rest = " & id_rest & ""
+                sSQL = "Delete from platos where id_rest = " & usuario1.getId_Rest & ""
 
                 CONECTAR(sSQL) 'Abrimos conexión con la db.
 
@@ -465,7 +504,7 @@ Module Funciones
                 dt.Load(comm.ExecuteReader)
 
                 'Query.
-                sSQL = "delete from rest where id_rest = " & id_rest & ""
+                sSQL = "delete from rest where id_rest = " & usuario1.getId_Rest & ""
 
 
                 CONECTAR(sSQL)

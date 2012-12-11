@@ -4,7 +4,7 @@ Public Class frm_app
     '               MOSTRAR RESTAURANTES DEL USUARIO
     '*************************************************************
     Private Sub frm_app_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        lbl_usuario.Text = Funciones.user
+        lbl_usuario.Text = Funciones.usuario1.getUser()
         Funciones.MOSTRAR_REST() 'Muestra los restaurantes del usuario actual.
     End Sub
     '*************************************************************
@@ -17,7 +17,7 @@ Public Class frm_app
     '                  SELECCIONAR PLATO
     '*************************************************************
     Private Sub lst_platos_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lst_platos.SelectedIndexChanged
-        Funciones.plato = lst_platos.SelectedItem
+        Funciones.usuario1.setPlato(lst_platos.SelectedItem)
     End Sub
     '*************************************************************
     '                  AGREGAR/EDITAR RESTAURANTES
@@ -41,7 +41,7 @@ Public Class frm_app
     '                  CERRAR SESIÓN
     '*************************************************************
     Private Sub pic_cerrar_sesion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_cerrar_sesion.Click
-        Funciones.user = ""
+        Funciones.usuario1.setUser("")
         Funciones.limpiar_login()
         frm_login.Show()
         Me.Close()
