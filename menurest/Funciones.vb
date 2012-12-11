@@ -398,6 +398,87 @@ Module Funciones
         End Try
 
     End Sub
+    '-------------------------------------------------------------
+    Sub borrar_plato()
+        'Verifica que haya un plato seleccionado.
+        If (frm_app.lst_platos.SelectedIndex = -1) Then
+            MsgBox("Debe seleccionar el plato que desea borrar.")
+        Else
+            'Confirmación de borrado.
+            If (MsgBox("¿Está seguro que desea borrar el plato" & plato & "?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
+                'Query.
+                sSQL = "Select * from rest where nombre = '" & rest & "' and id_usuario = " & id_user & ""
+
+                CONECTAR(sSQL) 'Abrimos conexión con la db.
+
+                dt.Reset()
+                dt.Load(comm.ExecuteReader)
+
+                id_rest = dt.Rows.Item(0).Item(0)
+
+                'Query.
+                sSQL = "Select * from platos where id_rest = " & id_rest & " and nombre = '" & plato & "'"
+
+                CONECTAR(sSQL) 'Abrimos conexión con la db.
+
+                dt.Reset()
+                dt.Load(comm.ExecuteReader)
+
+                'Query.
+                sSQL = "delete from platos where id_plato = " & dt.Rows.Item(0).Item(0) & ""
+
+                
+                CONECTAR(sSQL)
+                comm.ExecuteNonQuery()
+                MsgBox("Plato borrado correctamente.")
+
+                MOSTRAR_PLATOS()
+
+            End If
+        End If
+
+    End Sub
+    Sub borrar_restaurant()
+        'Verifica que haya un restaurant seleccionado.
+        If (frm_app.lst_rest.SelectedIndex = -1) Then
+            MsgBox("Debe seleccionar el restaurant que desea borrar.")
+        Else
+            'Confirmación de borrado.
+            If (MsgBox("¿Está seguro que desea borrar el restaurante" & rest & "?" & vbCrLf & vbCrLf & "También se borrarán todos los platos pertenecientes al restaurante.", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
+                
+                'Query.
+                sSQL = "Select * from rest where nombre = '" & rest & "' and id_usuario = " & id_user & ""
+
+                CONECTAR(sSQL) 'Abrimos conexión con la db.
+
+                dt.Reset()
+                dt.Load(comm.ExecuteReader)
+
+                id_rest = dt.Rows.Item(0).Item(0)
+
+                'Query.
+                sSQL = "Delete from platos where id_rest = " & id_rest & ""
+
+                CONECTAR(sSQL) 'Abrimos conexión con la db.
+
+                dt.Reset()
+                dt.Load(comm.ExecuteReader)
+
+                'Query.
+                sSQL = "delete from rest where id_rest = " & id_rest & ""
+
+
+                CONECTAR(sSQL)
+                comm.ExecuteNonQuery()
+                MsgBox("Restaurante borrado correctamente.")
+
+                MOSTRAR_PLATOS()
+                MOSTRAR_REST()
+
+            End If
+        End If
+
+    End Sub
 
     '*************************************************************
     '                         LIMPIAR

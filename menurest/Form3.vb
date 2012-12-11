@@ -44,4 +44,11 @@ Public Class frm_app
 
     End Sub
 
+    Private Sub pic_borrar_plato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_borrar_plato.Click
+        Funciones.borrar_plato()
+    End Sub
+
+    Private Sub pic_borrar_rest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pic_borrar_rest.Click
+        Funciones.borrar_restaurant()
+    End Sub
 End Class

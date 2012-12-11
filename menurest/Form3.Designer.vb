@@ -26,9 +26,13 @@ Partial Class frm_app
         Me.pic_agregar = New System.Windows.Forms.PictureBox
         Me.lbl_usuario = New System.Windows.Forms.Label
         Me.pic_cerrar_sesion = New System.Windows.Forms.PictureBox
+        Me.pic_borrar_rest = New System.Windows.Forms.PictureBox
+        Me.pic_borrar_plato = New System.Windows.Forms.PictureBox
         CType(Me.pic_ver, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pic_agregar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pic_cerrar_sesion, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic_borrar_rest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic_borrar_plato, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lst_rest
@@ -52,7 +56,7 @@ Partial Class frm_app
         'pic_ver
         '
         Me.pic_ver.Image = CType(resources.GetObject("pic_ver.Image"), System.Drawing.Image)
-        Me.pic_ver.Location = New System.Drawing.Point(39, 121)
+        Me.pic_ver.Location = New System.Drawing.Point(34, 118)
         Me.pic_ver.Name = "pic_ver"
         Me.pic_ver.Size = New System.Drawing.Size(79, 42)
         Me.pic_ver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -62,9 +66,9 @@ Partial Class frm_app
         'pic_agregar
         '
         Me.pic_agregar.Image = CType(resources.GetObject("pic_agregar.Image"), System.Drawing.Image)
-        Me.pic_agregar.Location = New System.Drawing.Point(22, 179)
+        Me.pic_agregar.Location = New System.Drawing.Point(26, 166)
         Me.pic_agregar.Name = "pic_agregar"
-        Me.pic_agregar.Size = New System.Drawing.Size(113, 41)
+        Me.pic_agregar.Size = New System.Drawing.Size(88, 35)
         Me.pic_agregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
         Me.pic_agregar.TabIndex = 7
         Me.pic_agregar.TabStop = False
@@ -90,12 +94,34 @@ Partial Class frm_app
         Me.pic_cerrar_sesion.TabIndex = 9
         Me.pic_cerrar_sesion.TabStop = False
         '
+        'pic_borrar_rest
+        '
+        Me.pic_borrar_rest.Image = CType(resources.GetObject("pic_borrar_rest.Image"), System.Drawing.Image)
+        Me.pic_borrar_rest.Location = New System.Drawing.Point(27, 212)
+        Me.pic_borrar_rest.Name = "pic_borrar_rest"
+        Me.pic_borrar_rest.Size = New System.Drawing.Size(95, 29)
+        Me.pic_borrar_rest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_borrar_rest.TabIndex = 10
+        Me.pic_borrar_rest.TabStop = False
+        '
+        'pic_borrar_plato
+        '
+        Me.pic_borrar_plato.Image = CType(resources.GetObject("pic_borrar_plato.Image"), System.Drawing.Image)
+        Me.pic_borrar_plato.Location = New System.Drawing.Point(23, 246)
+        Me.pic_borrar_plato.Name = "pic_borrar_plato"
+        Me.pic_borrar_plato.Size = New System.Drawing.Size(103, 23)
+        Me.pic_borrar_plato.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pic_borrar_plato.TabIndex = 11
+        Me.pic_borrar_plato.TabStop = False
+        '
         'frm_app
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(460, 282)
+        Me.Controls.Add(Me.pic_borrar_plato)
+        Me.Controls.Add(Me.pic_borrar_rest)
         Me.Controls.Add(Me.pic_cerrar_sesion)
         Me.Controls.Add(Me.lbl_usuario)
         Me.Controls.Add(Me.pic_agregar)
@@ -110,6 +136,8 @@ Partial Class frm_app
         CType(Me.pic_ver, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pic_agregar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pic_cerrar_sesion, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic_borrar_rest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic_borrar_plato, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -120,4 +148,6 @@ Partial Class frm_app
     Friend WithEvents pic_agregar As System.Windows.Forms.PictureBox
     Friend WithEvents lbl_usuario As System.Windows.Forms.Label
     Friend WithEvents pic_cerrar_sesion As System.Windows.Forms.PictureBox
+    Friend WithEvents pic_borrar_rest As System.Windows.Forms.PictureBox
+    Friend WithEvents pic_borrar_plato As System.Windows.Forms.PictureBox
 End Class
